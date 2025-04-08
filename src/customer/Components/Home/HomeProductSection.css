@@ -1,0 +1,40 @@
+/* HomeProductSection.css */
+/* Add these styles to your existing CSS file */
+
+/* Custom scrollbar for the carousel */
+.react-alice-carousel {
+  padding: 0 20px;
+}
+
+.react-alice-carousel__stage {
+  display: flex;
+  align-items: stretch;
+  padding: 10px 0;
+}
+
+.react-alice-carousel__stage-item {
+  padding: 0 10px;
+  transition: transform 0.3s ease;
+}
+
+/* Add smooth transitions */
+.HomeProductCard {
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Add a subtle shine effect on hover */
+.HomeProductCard:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.1), 0 10px 10px rgba(0,0,0,0.08);
+}
+
+/* Pulse animation for the navigation buttons */
+@keyframes pulse {
+  0% { transform: translate(50%, -50%) rotate(90deg) scale(1); }
+  50% { transform: translate(50%, -50%) rotate(90deg) scale(1.1); }
+  100% { transform: translate(50%, -50%) rotate(90deg) scale(1); }
+}
+
+/* Apply the animation only on hover */
+.nav-button:hover {
+  animation: pulse 1.5s infinite;
+}
