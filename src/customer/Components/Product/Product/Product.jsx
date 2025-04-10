@@ -13,15 +13,12 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import Pagination from "@mui/material/Pagination";
-
 import { filters, singleFilter, sortOptions } from "./FilterData";
 import ProductCard from "../ProductCard/ProductCard";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import {
-  findProducts,
-} from "../../../../Redux/Customers/Product/Action";
+import { findProducts } from "../../../../Redux/Customers/Product/Action";
 import { Backdrop, CircularProgress } from "@mui/material";
 
 function classNames(...classes) {
@@ -42,7 +39,6 @@ export default function Product() {
     setIsLoaderOpen(false);
   };
 
-  // const filter = decodeURIComponent(location.search);
   const decodedQueryString = decodeURIComponent(location.search);
   const searchParams = new URLSearchParams(decodedQueryString);
   const colorValue = searchParams.get("color");
@@ -53,14 +49,13 @@ export default function Product() {
   const pageNumber = searchParams.get("page") || 1;
   const stock = searchParams.get("stock");
 
-  // console.log("location - ", colorValue, sizeValue,price,disccount);
-
   const handleSortChange = (value) => {
     const searchParams = new URLSearchParams(location.search);
     searchParams.set("sort", value);
     const query = searchParams.toString();
     navigate({ search: `?${query}` });
   };
+
   const handlePaginationChange = (event, value) => {
     const searchParams = new URLSearchParams(location.search);
     searchParams.set("page", value);
@@ -97,7 +92,6 @@ export default function Product() {
 
   const handleFilter = (value, sectionId) => {
     const searchParams = new URLSearchParams(location.search);
-
     let filterValues = searchParams.getAll(sectionId);
 
     if (filterValues.length > 0 && filterValues[0].split(",").includes(value)) {
@@ -107,17 +101,13 @@ export default function Product() {
       if (filterValues.length === 0) {
         searchParams.delete(sectionId);
       }
-      console.log("includes");
     } else {
-      // Remove all values for the current section
-      // searchParams.delete(sectionId);
       filterValues.push(value);
     }
 
     if (filterValues.length > 0)
       searchParams.set(sectionId, filterValues.join(","));
 
-    // history.push({ search: searchParams.toString() });
     const query = searchParams.toString();
     navigate({ search: `?${query}` });
   };
@@ -137,10 +127,17 @@ export default function Product() {
     }
   }, [customersProduct.loading]);
 
+  const viewMore = () => {
+    const searchParams = new URLSearchParams(location.search);
+    const nextPage = Number(pageNumber) + 1;
+    searchParams.set("page", nextPage);
+    const query = searchParams.toString();
+    navigate({ search: `?${query}` });
+  };
+
   return (
-    <div className="bg-white -z-20 ">
+    <div className="bg-white -z-20">
       <div>
-        {/* Mobile filter dialog */}
         <Transition.Root show={mobileFiltersOpen} as={Fragment}>
           <Dialog
             as="div"
@@ -184,14 +181,12 @@ export default function Product() {
                     </button>
                   </div>
 
-                  {/* Filters */}
                   <form className="mt-4 border-t border-gray-200">
                     {filters.map((section) => (
                       <Disclosure
                         as="div"
                         key={section.id}
                         className="border-t border-gray-200 px-4 py-6"
-                        // open={false}
                       >
                         {({ open }) => (
                           <>
@@ -236,7 +231,6 @@ export default function Product() {
                                     <label
                                       htmlFor={`filter-mobile-${section.id}-${optionIdx}`}
                                       className="ml-3 min-w-0 flex-1 text-gray-500"
-                                      // onClick={()=>handleFilter(option.value,section.id)}
                                     >
                                       {option.label}
                                     </label>
@@ -255,7 +249,7 @@ export default function Product() {
           </Dialog>
         </Transition.Root>
 
-        <main className="mx-auto px-4 lg:px-14 ">
+        <main className="mx-auto px-4 lg:px-14">
           <div className="flex items-baseline justify-between border-b border-gray-200 pb-6">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900">
               Product
@@ -287,18 +281,20 @@ export default function Product() {
                       {sortOptions.map((option) => (
                         <Menu.Item key={option.name}>
                           {({ active }) => (
-                            <p
+                            <button
                               onClick={() => handleSortChange(option.query)}
                               className={classNames(
-                                option.current
-                                  ? "font-medium text-gray-900"
-                                  : "text-gray-500",
                                 active ? "bg-gray-100" : "",
-                                "block px-4 py-2 text-sm cursor-pointer"
+                                "block px-4 py-2 text-sm text-left w-full"
                               )}
                             >
-                              {option.name}
-                            </p>
+                              <p className="font-medium text-gray-900">
+                                {option.label}
+                              </p>
+                              <p className="text-xs text-gray-500">
+                                {option.name}
+                              </p>
+                            </button>
                           )}
                         </Menu.Item>
                       ))}
@@ -310,16 +306,16 @@ export default function Product() {
               <button
                 type="button"
                 className="-m-2 ml-5 p-2 text-gray-400 hover:text-gray-500 sm:ml-7"
+                aria-label="View grid"
               >
-                <span className="sr-only">View grid</span>
                 <Squares2X2Icon className="h-5 w-5" aria-hidden="true" />
               </button>
               <button
                 type="button"
                 className="-m-2 ml-4 p-2 text-gray-400 hover:text-gray-500 sm:ml-6 lg:hidden"
                 onClick={() => setMobileFiltersOpen(true)}
+                aria-label="Filters"
               >
-                <span className="sr-only">Filters</span>
                 <FunnelIcon className="h-5 w-5" aria-hidden="true" />
               </button>
             </div>
@@ -333,11 +329,9 @@ export default function Product() {
             <div>
               <h2 className="py-5 font-semibold opacity-60 text-lg">Filters</h2>
               <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5">
-                {/* Filters */}
                 <form className="hidden lg:block border rounded-md p-5">
                   {filters.map((section) => (
                     <Disclosure
-                      // defaultOpen={false}
                       as="div"
                       key={section.id}
                       className="border-b border-gray-200 py-6"
@@ -398,7 +392,6 @@ export default function Product() {
                   ))}
                   {singleFilter.map((section) => (
                     <Disclosure
-                      // defaultOpen={true}
                       as="div"
                       key={section.id}
                       className="border-b border-gray-200 py-6"
@@ -428,12 +421,13 @@ export default function Product() {
                           <Disclosure.Panel className="pt-6">
                             <FormControl>
                               <RadioGroup
-                                aria-labelledby="demo-radio-buttons-group-label"
-                                defaultValue="female"
-                                name="radio-buttons-group"
+                                aria-labelledby={`${section.id}-radio-group`}
+                                defaultValue=""
+                                name={`${section.id}-radio`}
                               >
                                 {section.options.map((option, optionIdx) => (
                                   <FormControlLabel
+                                    key={option.value}
                                     value={option.value}
                                     control={<Radio />}
                                     label={option.label}
@@ -451,41 +445,49 @@ export default function Product() {
                   ))}
                 </form>
 
-                {/* Product grid */}
-                <div className="lg:col-span-4 w-full ">
-                  <div className="flex flex-wrap justify-center bg-white border py-5 rounded-md ">
+                <div className="lg:col-span-4 w-full">
+                  <div className="flex flex-wrap justify-center bg-white border py-5 rounded-md">
                     {customersProduct?.products?.content?.map((item) => (
-                      <ProductCard product={item} />
+                      <ProductCard key={item.id} product={item} />
                     ))}
                   </div>
                 </div>
               </div>
             </div>
           </section>
+
+          <section className="w-full px-[3.6rem]">
+            <div className="mx-auto px-4 py-5 flex justify-center shadow-lg border rounded-md">
+              <Pagination
+                count={customersProduct.products?.totalPages}
+                color="primary"
+                onChange={handlePaginationChange}
+              />
+            </div>
+          </section>
+
+          {customersProduct?.products &&
+            Number(customersProduct.products.totalPages) > Number(pageNumber) && (
+              <section className="w-full px-[3.6rem] py-5 flex justify-center">
+                <button
+                  onClick={viewMore}
+                  className="text-blue-600 hover:text-blue-800 text-lg font-medium"
+                >
+                  See more
+                </button>
+              </section>
+            )}
+
+          <section>
+            <Backdrop
+              sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+              open={isLoaderOpen}
+              onClick={handleLoderClose}
+            >
+              <CircularProgress color="inherit" />
+            </Backdrop>
+          </section>
         </main>
-
-        {/* pagination section */}
-        <section className="w-full px-[3.6rem]">
-          <div className="mx-auto px-4 py-5 flex justify-center shadow-lg border rounded-md">
-            <Pagination
-              count={customersProduct.products?.totalPages}
-              color="primary"
-              className=""
-              onChange={handlePaginationChange}
-            />
-          </div>
-        </section>
-
-        {/* {backdrop} */}
-        <section>
-          <Backdrop
-            sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-            open={isLoaderOpen}
-            onClick={handleLoderClose}
-          >
-            <CircularProgress color="inherit" />
-          </Backdrop>
-        </section>
       </div>
     </div>
   );

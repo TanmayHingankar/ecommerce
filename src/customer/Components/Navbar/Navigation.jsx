@@ -181,17 +181,25 @@ export default function Navigation() {
                             >
                               {section.name}
                             </p>
-                            {/* eslint-disable-next-line jsx-a11y/no-redundant-roles */}
                             <ul
-                              role="list"
                               aria-labelledby={`${category.id}-${section.id}-heading-mobile`}
                               className="mt-6 flex flex-col space-y-6"
                             >
                               {section.items.map((item) => (
                                 <li key={item.name} className="flow-root">
-                                  <p className="-m-2 block p-2 text-gray-500">
-                                    {"item.name"}
-                                  </p>
+                                  <button
+                                    onClick={() =>
+                                      handleCategoryClick(
+                                        category,
+                                        section,
+                                        item,
+                                        () => setOpen(false)
+                                      )
+                                    }
+                                    className="w-full text-left p-2 text-gray-500 hover:text-gray-800"
+                                  >
+                                    {item.name}
+                                  </button>
                                 </li>
                               ))}
                             </ul>
@@ -304,7 +312,6 @@ export default function Navigation() {
                             leaveTo="opacity-0"
                           >
                             <Popover.Panel className="absolute inset-x-0 top-full text-sm text-gray-500">
-                              {/* Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow */}
                               <div
                                 className="absolute inset-0 top-1/2 bg-white shadow"
                                 aria-hidden="true"
@@ -354,9 +361,7 @@ export default function Navigation() {
                                           >
                                             {section.name}
                                           </p>
-                                          {/* eslint-disable-next-line jsx-a11y/no-redundant-roles */}
                                           <ul
-                                            role="list"
                                             aria-labelledby={`${section.name}-heading`}
                                             className="mt-6 space-y-6 sm:mt-4 sm:space-y-4"
                                           >
@@ -365,7 +370,7 @@ export default function Navigation() {
                                                 key={item.name}
                                                 className="flex"
                                               >
-                                                <p
+                                                <button
                                                   onClick={() =>
                                                     handleCategoryClick(
                                                       category,
@@ -374,10 +379,10 @@ export default function Navigation() {
                                                       close
                                                     )
                                                   }
-                                                  className="cursor-pointer hover:text-gray-800"
+                                                  className="w-full text-left p-2 text-gray-500 hover:text-gray-800"
                                                 >
                                                   {item.name}
-                                                </p>
+                                                </button>
                                               </li>
                                             ))}
                                           </ul>
@@ -416,7 +421,6 @@ export default function Navigation() {
                         aria-controls={open ? "basic-menu" : undefined}
                         aria-haspopup="true"
                         aria-expanded={open ? "true" : undefined}
-                        // onClick={handleUserClick}
                         sx={{
                           bgcolor: deepPurple[500],
                           color: "white",
@@ -425,15 +429,6 @@ export default function Navigation() {
                       >
                         {auth.user?.firstName[0].toUpperCase()}
                       </Avatar>
-                      {/* <Button
-                        id="basic-button"
-                        aria-controls={open ? "basic-menu" : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={open ? "true" : undefined}
-                        onClick={handleUserClick}
-                      >
-                        Dashboard
-                      </Button> */}
                       <Menu
                         id="basic-menu"
                         anchorEl={anchorEl}
@@ -448,7 +443,16 @@ export default function Navigation() {
                             ? "Admin Dashboard"
                             : "My Orders"}
                         </MenuItem>
-                        <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                        <MenuItem>
+                          <div
+                            onClick={handleLogout}
+                            role="button"
+                            tabIndex={0}
+                            onKeyDown={(e) => e.key === "Enter" && handleLogout()}
+                          >
+                            Logout
+                          </div>
+                        </MenuItem>
                       </Menu>
                     </div>
                   ) : (
@@ -463,15 +467,13 @@ export default function Navigation() {
 
                 {/* Search */}
                 <div className="flex items-center lg:ml-6">
-                
-                  <p onClick={()=>navigate("/products/search")} className="p-2 text-gray-400 hover:text-gray-500">
+                  <button
+                    onClick={() => navigate("/products/search")}
+                    className="p-2 text-gray-400 hover:text-gray-500"
+                  >
                     <span className="sr-only">Search</span>
-                    
-                    <MagnifyingGlassIcon
-                      className="h-6 w-6"
-                      aria-hidden="true"
-                    />
-                  </p>
+                    <MagnifyingGlassIcon className="h-6 w-6" aria-hidden="true" />
+                  </button>
                 </div>
 
                 {/* Cart */}

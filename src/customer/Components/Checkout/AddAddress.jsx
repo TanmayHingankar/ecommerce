@@ -12,15 +12,11 @@ export default function AddDeliveryAddressForm({ handleNext }) {
   const dispatch = useDispatch();
   const jwt = localStorage.getItem("jwt");
   const { auth } = useSelector((store) => store);
-  const [selectedAddress, setSelectedAdress] = useState(null);
-
-  // console.log("auth", auth);
+  const [selectedAddress, setSelectedAddress] = useState(null);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-
     const address = {
       firstName: data.get("firstName"),
       lastName: data.get("lastName"),
@@ -32,13 +28,18 @@ export default function AddDeliveryAddressForm({ handleNext }) {
     };
 
     dispatch(createOrder({ address, jwt, navigate }));
-    // after perfoming all the opration
     handleNext();
   };
 
   const handleCreateOrder = (item) => {
-    dispatch(createOrder({ address:item, jwt, navigate }));
+    dispatch(createOrder({ address: item, jwt, navigate }));
     handleNext();
+  };
+
+  const handleClick = (item) => {
+    setSelectedAddress(item); // Select the clicked address
+    console.log("Selected address:", item);
+    // Add any additional logic if needed
   };
 
   return (
@@ -47,10 +48,12 @@ export default function AddDeliveryAddressForm({ handleNext }) {
         <Box className="border rounded-md shadow-md h-[30.5rem] overflow-y-scroll ">
           {auth.user?.addresses.map((item) => (
             <div
-              onClick={() => setSelectedAdress(item)}
-              className="p-5 py-7 border-b cursor-pointer"
+              onClick={() => handleClick(item)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => e.key === "Enter" && handleClick(item)}
+              className="cursor-pointer"
             >
-              {" "}
               <AddressCard address={item} />
               {selectedAddress?.id === item.id && (
                 <Button
@@ -58,7 +61,7 @@ export default function AddDeliveryAddressForm({ handleNext }) {
                   size="large"
                   variant="contained"
                   color="primary"
-                  onClick={()=>handleCreateOrder(item)}
+                  onClick={() => handleCreateOrder(item)}
                 >
                   Deliverd Here
                 </Button>

@@ -13,8 +13,7 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import Pagination from "@mui/material/Pagination";
-import TextField from '@mui/material/TextField';
-
+import TextField from "@mui/material/TextField";
 import { filters, singleFilter, sortOptions } from "./FilterData";
 import ProductCard from "../ProductCard/ProductCard";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
@@ -35,7 +34,7 @@ export default function SearchProduct() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const jwt = localStorage.getItem("jwt");
-  const {keyword} = useParams();
+  const { keyword } = useParams();
   const { customersProduct } = useSelector((store) => store);
   const location = useLocation();
   const [isLoaderOpen, setIsLoaderOpen] = useState(false);
@@ -44,15 +43,13 @@ export default function SearchProduct() {
     setIsLoaderOpen(false);
   };
 
-  
-  // console.log("location - ", colorValue, sizeValue,price,disccount);
-
   const handleSortChange = (value) => {
     const searchParams = new URLSearchParams(location.search);
     searchParams.set("sort", value);
     const query = searchParams.toString();
     navigate({ search: `?${query}` });
   };
+
   const handlePaginationChange = (event, value) => {
     const searchParams = new URLSearchParams(location.search);
     searchParams.set("page", value);
@@ -61,14 +58,8 @@ export default function SearchProduct() {
   };
 
   useEffect(() => {
-    
     dispatch(findProducts());
-  }, [
-   keyword
-  ]);
-
- 
-
+  }, [keyword]);
 
   useEffect(() => {
     if (customersProduct.loading) {
@@ -78,14 +69,17 @@ export default function SearchProduct() {
     }
   }, [customersProduct.loading]);
 
-  const handleSearch=(e)=>{
-    const keyword=e.target.value;
-    dispatch(searchProduct(keyword))
+  const handleSearch = (e) => {
+    const keyword = e.target.value;
+    dispatch(searchProduct(keyword));
+  };
 
-  }
+  const selectProduct = (productId) => {
+    navigate(`/product/${productId}`);
+  };
 
   return (
-    <div className="bg-white -z-20 ">
+    <div className="bg-white -z-20">
       <div>
         {/* Mobile filter dialog */}
         <Transition.Root show={mobileFiltersOpen} as={Fragment}>
@@ -138,7 +132,6 @@ export default function SearchProduct() {
                         as="div"
                         key={section.id}
                         className="border-t border-gray-200 px-4 py-6"
-                        // open={false}
                       >
                         {({ open }) => (
                           <>
@@ -176,12 +169,10 @@ export default function SearchProduct() {
                                       type="checkbox"
                                       defaultChecked={option.checked}
                                       className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                                      
                                     />
                                     <label
                                       htmlFor={`filter-mobile-${section.id}-${optionIdx}`}
                                       className="ml-3 min-w-0 flex-1 text-gray-500"
-                                      // onClick={()=>handleFilter(option.value,section.id)}
                                     >
                                       {option.label}
                                     </label>
@@ -200,7 +191,7 @@ export default function SearchProduct() {
           </Dialog>
         </Transition.Root>
 
-        <main className="mx-auto px-4 lg:px-14 ">
+        <main className="mx-auto px-4 lg:px-14">
           <div className="flex items-baseline justify-between border-b border-gray-200 pb-6">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900">
               Search Product
@@ -232,18 +223,23 @@ export default function SearchProduct() {
                       {sortOptions.map((option) => (
                         <Menu.Item key={option.name}>
                           {({ active }) => (
-                            <p
+                            <div
                               onClick={() => handleSortChange(option.query)}
+                              role="button"
+                              tabIndex={0}
+                              onKeyDown={(e) => e.key === "Enter" && handleSortChange(option.query)}
                               className={classNames(
-                                option.current
-                                  ? "font-medium text-gray-900"
-                                  : "text-gray-500",
                                 active ? "bg-gray-100" : "",
                                 "block px-4 py-2 text-sm cursor-pointer"
                               )}
                             >
-                              {option.name}
-                            </p>
+                              <p className="font-medium text-gray-900">
+                                {option.label}
+                              </p>
+                              <p className="text-xs text-gray-500">
+                                {option.name}
+                              </p>
+                            </div>
                           )}
                         </Menu.Item>
                       ))}
@@ -276,51 +272,51 @@ export default function SearchProduct() {
             </h2>
 
             <div>
-              
-              <div className=" gap-y-10 ">
-               
-
+              <div className="gap-y-10">
                 {/* Product grid */}
-                <div className=" w-full">
-                <TextField
-                      id="outlined-basic"
-                      label="search product..."
-                      variant="outlined"
-                      onChange={handleSearch}
-                    />
-                  <div className="flex flex-wrap justify-center bg-white py-5 rounded-md ">
+                <div className="w-full">
+                  <TextField
+                    id="outlined-basic"
+                    label="search product..."
+                    variant="outlined"
+                    onChange={handleSearch}
+                  />
+                  <div className="flex flex-wrap justify-center bg-white py-5 rounded-md">
                     {customersProduct?.searchProducts?.map((item) => (
-                      <ProductCard product={item} />
+                      <ProductCard
+                        key={item.id}
+                        product={item}
+                        selectProduct={() => selectProduct(item.id)}
+                      />
                     ))}
                   </div>
                 </div>
               </div>
             </div>
           </section>
+
+          {/* pagination section */}
+          <section className="w-full px-[3.6rem]">
+            <div className="mx-auto px-4 py-5 flex justify-center shadow-lg border rounded-md">
+              <Pagination
+                count={customersProduct.products?.totalPages}
+                color="primary"
+                onChange={handlePaginationChange}
+              />
+            </div>
+          </section>
+
+          {/* backdrop */}
+          <section>
+            <Backdrop
+              sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+              open={isLoaderOpen}
+              onClick={handleLoderClose}
+            >
+              <CircularProgress color="inherit" />
+            </Backdrop>
+          </section>
         </main>
-
-        {/* pagination section */}
-        <section className="w-full px-[3.6rem]">
-          <div className="mx-auto px-4 py-5 flex justify-center shadow-lg border rounded-md">
-            <Pagination
-              count={customersProduct.products?.totalPages}
-              color="primary"
-              className=""
-              onChange={handlePaginationChange}
-            />
-          </div>
-        </section>
-
-        {/* {backdrop} */}
-        <section>
-          <Backdrop
-            sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-            open={isLoaderOpen}
-            onClick={handleLoderClose}
-          >
-            <CircularProgress color="inherit" />
-          </Backdrop>
-        </section>
       </div>
     </div>
   );
