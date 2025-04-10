@@ -1,14 +1,14 @@
-export const lehngacholiPage2=[
+export const lehngacholiPage2 = [
   {
     image:
       "https://rukminim1.flixcart.com/image/612/612/xif0q/lehenga-choli/y/g/m/l-sleeveless-shset95222-shae-by-sassafras-original-imaggjzkwyyyezzg.jpeg?q=70",
     brand: "Shae by SASSAFRAS",
     title: "Printed Stitched Lehenga Choli",
     color: "Grey",
-    selling_price: "₹2,069",
-    price: "₹4,599",
+    selling_price: "2069",
+    price: "4599",
     disscount: "55% off",
-    size: "",
+    size: ""
   },
   {
     image:
@@ -16,10 +16,10 @@ export const lehngacholiPage2=[
     brand: "BIBA",
     title: "Solid Stitched Lehenga Choli",
     color: "Yellow",
-    selling_price: "₹4,016",
-    price: "₹8,995",
+    selling_price: "4016",
+    price: "8995",
     disscount: "55% off",
-    size: "",
+    size: ""
   },
   {
     image:
@@ -27,10 +27,10 @@ export const lehngacholiPage2=[
     brand: "ZAALIMA FASHION",
     title: "Embroidered Semi Stitched Lehenga Choli",
     color: "Green",
-    selling_price: "₹386",
-    price: "₹1,799",
+    selling_price: "386",
+    price: "1799",
     disscount: "78% off",
-    size: "",
+    size: ""
   },
   {
     image:
@@ -38,10 +38,10 @@ export const lehngacholiPage2=[
     brand: "Cute Fellow",
     title: "Embroidered Semi Stitched Lehenga Choli",
     color: "Purple",
-    selling_price: "₹615",
-    price: "₹3,499",
+    selling_price: "615",
+    price: "3499",
     disscount: "82% off",
-    size: "",
+    size: ""
   },
   {
     image:
@@ -49,10 +49,10 @@ export const lehngacholiPage2=[
     brand: "Trivety",
     title: "Embroidered Semi Stitched Lehenga Choli",
     color: "Pink",
-    selling_price: "₹439",
-    price: "₹1,999",
+    selling_price: "439",
+    price: "1999",
     disscount: "78% off",
-    size: "",
+    size: ""
   },
   {
     image:
@@ -60,10 +60,10 @@ export const lehngacholiPage2=[
     brand: "Zinariya Fab",
     title: "Floral Print Semi Stitched Lehenga Choli",
     color: "Blue",
-    selling_price: "₹499",
-    price: "₹3,099",
+    selling_price: "499",
+    price: "3099",
     disscount: "83% off",
-    size: "",
+    size: ""
   },
   {
     image:
@@ -71,10 +71,10 @@ export const lehngacholiPage2=[
     brand: "jahal fashion",
     title: "Embroidered Semi Stitched Lehenga Choli",
     color: "Red",
-    selling_price: "₹484",
-    price: "₹2,499",
+    selling_price: "484",
+    price: "2499",
     disscount: "80% off",
-    size: "",
+    size: ""
   },
   {
     image:
@@ -82,10 +82,10 @@ export const lehngacholiPage2=[
     brand: "DECIZE CLOTHING",
     title: "Self Design Semi Stitched Lehenga Choli",
     color: "Pink, Green",
-    selling_price: "₹854",
-    price: "₹2,099",
+    selling_price: "854",
+    price: "2099",
     disscount: "59% off",
-    size: "",
+    size: ""
   },
   {
     image:
@@ -93,10 +93,10 @@ export const lehngacholiPage2=[
     brand: "Trivety",
     title: "Printed Semi Stitched Lehenga Choli",
     color: "Blue",
-    selling_price: "₹479",
-    price: "₹1,499",
+    selling_price: "479",
+    price: "1499",
     disscount: "68% off",
-    size: "",
+    size: ""
   },
   {
     image:
@@ -104,10 +104,10 @@ export const lehngacholiPage2=[
     brand: "jahal fashion",
     title: "Self Design Semi Stitched Lehenga & Crop Top",
     color: "Red",
-    selling_price: "₹424",
-    price: "₹1,999",
+    selling_price: "424",
+    price: "1999",
     disscount: "78% off",
-    size: "",
+    size: ""
   },
   {
     image:
@@ -115,10 +115,10 @@ export const lehngacholiPage2=[
     brand: "Shae by SASSAFRAS",
     title: "Embellished Stitched Lehenga Choli",
     color: "White",
-    selling_price: "₹2,249",
-    price: "₹4,999",
+    selling_price: "2249",
+    price: "4999",
     disscount: "55% off",
-    size: "",
+    size: ""
   },
   {
     image:
@@ -126,10 +126,10 @@ export const lehngacholiPage2=[
     brand: "Shae by SASSAFRAS",
     title: "Embroidered Stitched Lehenga Choli",
     color: "Purple",
-    selling_price: "₹1,934",
-    price: "₹4,299",
+    selling_price: "1934",
+    price: "4299",
     disscount: "55% off",
-    size: "",
+    size: ""
   },
   {
     image:
@@ -137,10 +137,10 @@ export const lehngacholiPage2=[
     brand: "ZAALIMA FASHION",
     title: "Embroidered Semi Stitched Lehenga Choli",
     color: "Dark Blue",
-    selling_price: "₹784",
-    price: "₹1,999",
+    selling_price: "784",
+    price: "1999",
     disscount: "60% off",
-    size: "",
+    size: ""
   },
   {
     image:
@@ -148,10 +148,10 @@ export const lehngacholiPage2=[
     brand: "NJ FASHION",
     title: "Embroidered Semi Stitched Lehenga Choli",
     color: "Red",
-    selling_price: "₹599",
-    price: "₹3,999",
+    selling_price: "599",
+    price: "3999",
     disscount: "85% off",
-    size: "",
+    size: ""
   },
   {
     image:
@@ -159,10 +159,10 @@ export const lehngacholiPage2=[
     brand: "Cute Fellow",
     title: "Embroidered Semi Stitched Lehenga Choli",
     color: "Maroon",
-    selling_price: "₹614",
-    price: "₹3,499",
+    selling_price: "614",
+    price: "3499",
     disscount: "82% off",
-    size: "",
+    size: ""
   },
   {
     image:
@@ -170,10 +170,10 @@ export const lehngacholiPage2=[
     brand: "ZAALIMA FASHION",
     title: "Embroidered Semi Stitched Lehenga Choli",
     color: "Grey",
-    selling_price: "₹409",
-    price: "₹1,999",
+    selling_price: "409",
+    price: "1999",
     disscount: "79% off",
-    size: "",
+    size: ""
   },
   {
     image:
@@ -181,10 +181,10 @@ export const lehngacholiPage2=[
     brand: "Shae by SASSAFRAS",
     title: "Printed Stitched Lehenga Choli",
     color: "Maroon",
-    selling_price: "₹1,919",
-    price: "₹4,799",
+    selling_price: "1919",
+    price: "4799",
     disscount: "60% off",
-    size: "",
+    size: ""
   },
   {
     image:
@@ -192,10 +192,10 @@ export const lehngacholiPage2=[
     brand: "Shae by SASSAFRAS",
     title: "Printed Stitched Lehenga Choli",
     color: "Purple",
-    selling_price: "₹2,114",
-    price: "₹4,699",
+    selling_price: "2114",
+    price: "4699",
     disscount: "55% off",
-    size: "",
+    size: ""
   },
   {
     image:
@@ -203,10 +203,10 @@ export const lehngacholiPage2=[
     brand: "GOROLY",
     title: "Embroidered Semi Stitched Lehenga Choli",
     color: "Purple",
-    selling_price: "₹792",
-    price: "₹3,999",
+    selling_price: "792",
+    price: "3999",
     disscount: "80% off",
-    size: "",
+    size: ""
   },
   {
     image:
@@ -214,10 +214,10 @@ export const lehngacholiPage2=[
     brand: "E mart",
     title: "Self Design Semi Stitched Lehenga Choli",
     color: "Pink",
-    selling_price: "₹292",
-    price: "₹599",
+    selling_price: "292",
+    price: "599",
     disscount: "51% off",
-    size: "",
+    size: ""
   },
   {
     image:
@@ -225,10 +225,10 @@ export const lehngacholiPage2=[
     brand: "Shae by SASSAFRAS",
     title: "Printed Stitched Lehenga & Crop Top",
     color: "Gold",
-    selling_price: "₹1,679",
-    price: "₹4,199",
+    selling_price: "1679",
+    price: "4199",
     disscount: "60% off",
-    size: "",
+    size: ""
   },
   {
     image:
@@ -236,10 +236,10 @@ export const lehngacholiPage2=[
     brand: "BIBA",
     title: "Printed Stitched Lehenga & Crop Top",
     color: "Dark Blue",
-    selling_price: "₹4,800",
-    price: "₹7,500",
+    selling_price: "4800",
+    price: "7500",
     disscount: "36% off",
-    size: "",
+    size: ""
   },
   {
     image:
@@ -247,10 +247,10 @@ export const lehngacholiPage2=[
     brand: "anara",
     title: "Digital Print Semi Stitched Lehenga Choli",
     color: "Blue",
-    selling_price: "₹599",
-    price: "₹2,999",
+    selling_price: "599",
+    price: "2999",
     disscount: "80% off",
-    size: "",
+    size: ""
   },
   {
     image:
@@ -258,10 +258,10 @@ export const lehngacholiPage2=[
     brand: "vajiba",
     title: "Solid Semi Stitched Lehenga Choli",
     color: "Maroon",
-    selling_price: "₹357",
-    price: "₹1,999",
+    selling_price: "357",
+    price: "1999",
     disscount: "82% off",
-    size: "",
+    size: ""
   },
   {
     image:
@@ -269,10 +269,10 @@ export const lehngacholiPage2=[
     brand: "Shree Impex",
     title: "Embroidered Semi Stitched Lehenga Choli",
     color: "Dark Green",
-    selling_price: "₹694",
-    price: "₹5,999",
+    selling_price: "694",
+    price: "5999",
     disscount: "88% off",
-    size: "",
+    size: ""
   },
   {
     image:
@@ -280,10 +280,10 @@ export const lehngacholiPage2=[
     brand: "GOROLY",
     title: "Embroidered Semi Stitched Lehenga Choli",
     color: "Blue",
-    selling_price: "₹794",
-    price: "₹3,999",
+    selling_price: "794",
+    price: "3999",
     disscount: "80% off",
-    size: "",
+    size: ""
   },
   {
     image:
@@ -291,10 +291,10 @@ export const lehngacholiPage2=[
     brand: "BIBA",
     title: "Printed Stitched Lehenga Choli",
     color: "White",
-    selling_price: "₹8,995",
+    selling_price: "8995",
     price: "",
     disscount: "",
-    size: "",
+    size: ""
   },
   {
     image:
@@ -302,10 +302,10 @@ export const lehngacholiPage2=[
     brand: "Yuvi Creation",
     title: "Embellished Semi Stitched Lehenga Choli",
     color: "Light Blue",
-    selling_price: "₹2,239",
-    price: "₹3,900",
+    selling_price: "2239",
+    price: "3900",
     disscount: "42% off",
-    size: "",
+    size: ""
   },
   {
     image:
@@ -313,10 +313,10 @@ export const lehngacholiPage2=[
     brand: "Anghanbrothers",
     title: "Embroidered Semi Stitched Lehenga Choli",
     color: "Red, Gold",
-    selling_price: "₹952",
-    price: "₹5,555",
+    selling_price: "952",
+    price: "5555",
     disscount: "82% off",
-    size: "",
+    size: ""
   },
   {
     image:
@@ -324,10 +324,10 @@ export const lehngacholiPage2=[
     brand: "ZAALIMA FASHION",
     title: "Embroidered Semi Stitched Lehenga Choli",
     color: "Purple",
-    selling_price: "₹799",
-    price: "₹3,399",
+    selling_price: "799",
+    price: "3399",
     disscount: "76% off",
-    size: "",
+    size: ""
   },
   {
     image:
@@ -335,10 +335,10 @@ export const lehngacholiPage2=[
     brand: "Yuvi Creation",
     title: "Printed Semi Stitched Lehenga Choli",
     color: "Red, White",
-    selling_price: "₹999",
-    price: "₹1,900",
+    selling_price: "999",
+    price: "1900",
     disscount: "47% off",
-    size: "",
+    size: ""
   },
   {
     image:
@@ -346,10 +346,10 @@ export const lehngacholiPage2=[
     brand: "BIBA",
     title: "Printed Stitched Lehenga Choli",
     color: "Pink",
-    selling_price: "₹4,197",
-    price: "₹5,995",
+    selling_price: "4197",
+    price: "5995",
     disscount: "29% off",
-    size: "",
+    size: ""
   },
   {
     image:
@@ -357,10 +357,10 @@ export const lehngacholiPage2=[
     brand: "R&H COMAPANY",
     title: "Self Design Semi Stitched Lehenga & Crop Top",
     color: "Grey",
-    selling_price: "₹339",
-    price: "₹2,499",
+    selling_price: "339",
+    price: "2499",
     disscount: "86% off",
-    size: "",
+    size: ""
   },
   {
     image:
@@ -368,10 +368,10 @@ export const lehngacholiPage2=[
     brand: "vajiba",
     title: "Embroidered Semi Stitched Lehenga Choli",
     color: "Red",
-    selling_price: "₹349",
-    price: "₹1,999",
+    selling_price: "349",
+    price: "1999",
     disscount: "82% off",
-    size: "",
+    size: ""
   },
   {
     image:
@@ -379,10 +379,10 @@ export const lehngacholiPage2=[
     brand: "Fabcartz",
     title: "Self Design Semi Stitched Lehenga Choli",
     color: "Dark Green",
-    selling_price: "₹999",
-    price: "₹2,999",
+    selling_price: "999",
+    price: "2999",
     disscount: "66% off",
-    size: "",
+    size: ""
   },
   {
     image:
@@ -390,10 +390,10 @@ export const lehngacholiPage2=[
     brand: "Trivety",
     title: "Embroidered Semi Stitched Lehenga Choli",
     color: "Blue",
-    selling_price: "₹649",
-    price: "₹2,699",
+    selling_price: "649",
+    price: "2699",
     disscount: "75% off",
-    size: "",
+    size: ""
   },
   {
     image:
@@ -401,10 +401,10 @@ export const lehngacholiPage2=[
     brand: "Shae by SASSAFRAS",
     title: "Floral Print Stitched Lehenga Choli",
     color: "Dark Blue",
-    selling_price: "₹1,679",
-    price: "₹4,199",
+    selling_price: "1679",
+    price: "4199",
     disscount: "60% off",
-    size: "",
+    size: ""
   },
   {
     image:
@@ -412,10 +412,10 @@ export const lehngacholiPage2=[
     brand: "Pink She",
     title: "Digital Print Semi Stitched Lehenga Choli",
     color: "Blue",
-    selling_price: "₹460",
-    price: "₹3,099",
+    selling_price: "460",
+    price: "3099",
     disscount: "85% off",
-    size: "",
+    size: ""
   },
   {
     image:
@@ -423,10 +423,10 @@ export const lehngacholiPage2=[
     brand: "vajiba",
     title: "Embroidered Semi Stitched Lehenga Choli",
     color: "Blue",
-    selling_price: "₹331",
-    price: "₹1,999",
+    selling_price: "331",
+    price: "1999",
     disscount: "83% off",
-    size: "",
+    size: ""
   },
   {
     image:
@@ -434,9 +434,9 @@ export const lehngacholiPage2=[
     brand: "ISHU FAB",
     title: "Embroidered Semi Stitched Lehenga Choli",
     color: "Purple",
-    selling_price: "₹711",
-    price: "₹2,499",
+    selling_price: "711",
+    price: "2499",
     disscount: "71% off",
-    size: "",
-  },
+    size: ""
+  }
 ];

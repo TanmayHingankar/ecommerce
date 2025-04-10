@@ -3,9 +3,9 @@ import AliceCarousel from "react-alice-carousel";
 import HomeProductCard from "./HomeProductCard";
 import "./HomeProductSection.css";
 import { Button } from "@mui/material";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { ArrowForwardIos, ArrowBackIos } from "@mui/icons-material";
 import { useState } from "react";
-
+import { motion } from "framer-motion";
 const HomeProductSection = ({ section, data }) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -27,10 +27,21 @@ const HomeProductSection = ({ section, data }) => {
 
   return (
     <div className="relative px-4 sm:px-6 lg:px-8 my-12">
-      <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center font-serif">
+      <motion.h2 
+        className="text-3xl font-bold text-gray-800 mb-8 text-center font-serif"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
         {section}
-      </h2>
-      <div className="relative">
+      </motion.h2>
+      
+      <motion.div 
+        className="relative"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+      >
         <AliceCarousel
           disableButtonsControls
           disableDotsControls
@@ -43,16 +54,17 @@ const HomeProductSection = ({ section, data }) => {
           animationDuration={800}
         />
         
+        {/* Navigation Buttons */}
         {activeIndex !== items.length - 5 && (
           <Button
             onClick={slideNext}
             variant="contained"
-            className="z-50 shadow-lg hover:scale-110 transition-transform"
+            className="z-50 shadow-lg hover:scale-110 transition-transform nav-button"
             sx={{
               position: "absolute",
               top: "50%",
               right: "0",
-              transform: "translate(50%, -50%) rotate(90deg)",
+              transform: "translate(50%, -50%)",
               minWidth: "40px",
               height: "40px",
               borderRadius: "50%",
@@ -60,12 +72,12 @@ const HomeProductSection = ({ section, data }) => {
               color: "black",
               "&:hover": {
                 bgcolor: "#f5f5f5",
-                transform: "translate(50%, -50%) rotate(90deg) scale(1.1)"
+                transform: "translate(50%, -50%) scale(1.1)"
               }
             }}
             aria-label="next"
           >
-            <ArrowForwardIosIcon sx={{ fontSize: "1rem" }} />
+            <ArrowForwardIos sx={{ fontSize: "1rem" }} />
           </Button>
         )}
 
@@ -73,12 +85,12 @@ const HomeProductSection = ({ section, data }) => {
           <Button
             onClick={slidePrev}
             variant="contained"
-            className="z-50 shadow-lg hover:scale-110 transition-transform"
+            className="z-50 shadow-lg hover:scale-110 transition-transform nav-button"
             sx={{
               position: "absolute",
               top: "50%",
               left: "0",
-              transform: "translate(-50%, -50%) rotate(-90deg)",
+              transform: "translate(-50%, -50%)",
               minWidth: "40px",
               height: "40px",
               borderRadius: "50%",
@@ -86,15 +98,15 @@ const HomeProductSection = ({ section, data }) => {
               color: "black",
               "&:hover": {
                 bgcolor: "#f5f5f5",
-                transform: "translate(-50%, -50%) rotate(-90deg) scale(1.1)"
+                transform: "translate(-50%, -50%) scale(1.1)"
               }
             }}
             aria-label="previous"
           >
-            <ArrowForwardIosIcon sx={{ fontSize: "1rem" }} />
+            <ArrowBackIos sx={{ fontSize: "1rem" }} />
           </Button>
         )}
-      </div>
+      </motion.div>
     </div>
   );
 };

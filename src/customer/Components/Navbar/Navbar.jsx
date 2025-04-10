@@ -1,188 +1,200 @@
-import { Fragment, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { ShoppingBag, User, Search, Menu, X } from "react-feather";
+import { motion } from "framer-motion";
+import { useSelector } from "react-redux";
+import CartDropdown from "./CartDropdown";
 
-function Navbar() {
-  const [isNavigation, setIsNavigation] = useState(false);
-  const [showMenu, setShowMenu] = useState(false);
 
-  const handleShowMenu = () => {
-    setShowMenu(!showMenu);
-  };
+const Navbar = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const { cart } = useSelector((state) => state);
+  const { auth } = useSelector((state) => state);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const categories = [
+    { name: "Women", subcategories: ["Sarees", "Kurtas", "Lehengas", "Gowns"] },
+    { name: "Men", subcategories: ["Kurtas", "Sherwanis", "Jackets"] },
+    { name: "Kids", subcategories: ["Girls", "Boys", "Infants"] },
+    { name: "Home & Living", subcategories: ["Bed Sheets", "Curtains", "Cushions"] },
+    { name: "Beauty", subcategories: ["Makeup", "Skincare", "Haircare"] },
+  ];
+
   return (
-    <Fragment>
-      {/* Navigation bar */}
-      <nav className="bg-blue-700 text-white border-b border-gray-200 lg:px-20 px-2">
-        <div className="mx-auto px-4">
-          <div className="flex justify-between items-center">
-            {/* Logo */}
-            <Link to="/" className="flex items-center py-6">
-              <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrULGeR2boxQyp3e8Lya-tySGgKdi_sTefOA&s"
-                alt="Shweta"
-                className="h-8 w-8 mr-2"
-              />
-              <span className="font-bold text-white text-lg">
-                Shweta 
-              </span>
-            </Link>
+    <motion.nav
+      className={`fixed w-full z-50 transition-all duration-300 ${
+        isScrolled ? "bg-white shadow-md py-2" : "bg-white/90 py-4"
+      }`}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo */}
+          <Link to="/" className="flex items-center">
+            <motion.img
+              src="https://res.cloudinary.com/ddkso1wxi/image/upload/v1675919455/Logo/Copy_of_Zosh_Academy_nblljp.png"
+              alt="Shweta Fashion"
+              className="h-10 w-10"
+              whileHover={{ scale: 1.1 }}
+              transition={{ duration: 0.3 }}
+            />
+            <span className="ml-2 text-2xl font-bold text-pink-600">Shweta</span>
+          </Link>
 
-            {/* Navigation menu */}
-            <ul className="hidden md:flex items-center space-x-4">
-              <li>
-                <Link
-                  to="/men"
-                  className="font-medium text-white hover:text-black"
-                >
-                  Men
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/women"
-                  className="font-medium text-white hover:text-black"
-                >
-                  Women
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/kids"
-                  className="font-medium text-white hover:text-black"
-                >
-                  Kids
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/home-living"
-                  className="font-medium text-white hover:text-black"
-                >
-                  Home & Living
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/beauty"
-                  className="font-medium text-white hover:text-black"
-                >
-                  Beauty
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/offers"
-                  className="font-medium text-white hover:text-black"
-                >
-                  Offers
-                </Link>
-              </li>
-            </ul>
-
-            {/* Search bar */}
-            <form className="hidden md:block flex-grow max-w-sm">
-              <div className="relative w-full">
-                <input
-                  type="search"
-                  className="block w-full border border-gray-300 rounded-md py-2 pl-10 pr-3 leading-5 placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500 focus:text-gray-900 sm:text-sm"
-                  placeholder="Search"
-                />
-                <div className="absolute inset-y-0 left-0 flex items-center justify-center pl-3">
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-8">
+            {categories.map((category) => (
+              <div key={category.name} className="relative group">
+                <button className="text-gray-700 hover:text-pink-600 font-medium flex items-center transition-colors duration-200">
+                  {category.name}
                   <svg
-                    className="h-5 w-5 text-gray-400"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
+                    className="ml-1 h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
                   >
                     <path
-                      fillRule="evenodd"
-                      d="M7.716 14.966A7.25 7.25 0 1114.35 8.33a7.25 7.25 0 01-6.634 6.635zM15.5 9.75a5.75 5.75 0 10-11.5 0 5.75 5.75 0 0011.5 0z"
-                      clipRule="evenodd"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
                     />
                   </svg>
-                </div>
-              </div>
-            </form>
-
-            <div className="flex">
-              <span className="px-2">User</span>
-              <span className="px-2">Cart</span>
-            </div>
-
-            {/* Mobile navigation menu */}
-            <div className="md:hidden flex items-center">
-              <button onClick={handleShowMenu} className="text-white p-2">
-                <svg
-                  className="h-6 w-6"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+                </button>
+                <motion.div
+                  className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300"
+                  initial={{ opacity: 0, y: 10 }}
+                  whileHover={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3 }}
                 >
-                  <path d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              </button>
+                  {category.subcategories.map((subcategory) => (
+                    <Link
+                      key={subcategory}
+                      to={`/${category.name.toLowerCase()}/${subcategory.toLowerCase().replace(" ", "-")}`}
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-pink-50 hover:text-pink-600 transition-colors duration-200"
+                    >
+                      {subcategory}
+                    </Link>
+                  ))}
+                </motion.div>
+              </div>
+            ))}
+          </div>
+
+          {/* Search and Icons */}
+          <div className="flex items-center space-x-6">
+            <motion.button
+              className="p-2 text-gray-600 hover:text-pink-600"
+              whileHover={{ scale: 1.1 }}
+              transition={{ duration: 0.2 }}
+            >
+              <Search size={20} />
+            </motion.button>
+
+            <div className="relative">
+              <motion.button
+                className="p-2 text-gray-600 hover:text-pink-600 relative"
+                onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.2 }}
+              >
+                <User size={20} />
+              </motion.button>
+              {isUserMenuOpen && <UserDropdown onClose={() => setIsUserMenuOpen(false)} />}
             </div>
+
+            <div className="relative">
+              <motion.button
+                className="p-2 text-gray-600 hover:text-pink-600 relative"
+                onClick={() => setIsCartOpen(!isCartOpen)}
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.2 }}
+              >
+                <ShoppingBag size={20} />
+                {cart.cart?.totalItem > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-pink-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center animate-pulse">
+                    {cart.cart.totalItem}
+                  </span>
+                )}
+              </motion.button>
+              {isCartOpen && <CartDropdown onClose={() => setIsCartOpen(false)} />}
+            </div>
+
+            {/* Mobile menu button */}
+            <motion.button
+              className="md:hidden p-2 text-gray-600 hover:text-pink-600"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              whileHover={{ scale: 1.1 }}
+              transition={{ duration: 0.2 }}
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </motion.button>
           </div>
         </div>
-      </nav>
+      </div>
 
-      {/* Mobile navigation menu */}
-      {showMenu && (
-        <div className="md:hidden bg-white">
-          <ul className="flex flex-col py-4 space-y-2 px-5">
-            <li>
-              <Link
-                to="/men"
-                className="font-medium text-white hover:text-black"
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <motion.div
+          className="md:hidden bg-white shadow-lg px-4 py-6"
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: "auto" }}
+          exit={{ opacity: 0, height: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          {categories.map((category) => (
+            <div key={category.name} className="border-b border-pink-100 last:border-b-0">
+              <button
+                className="w-full text-left py-3 text-gray-700 hover:text-pink-600 font-medium flex justify-between items-center"
+                onClick={() => navigate(`/${category.name.toLowerCase()}`)}
               >
-                Men
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/women"
-                className="font-medium text-white hover:text-black"
-              >
-                Women
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/kids"
-                className="font-medium text-white hover:text-black"
-              >
-                Kids
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/home-living"
-                className="font-medium text-white hover:text-black"
-              >
-                Home & Living
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/beauty"
-                className="font-medium text-white hover:text-black"
-              >
-                Beauty
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/offers"
-                className="font-medium text-white hover:text-black"
-              >
-                Offers
-              </Link>
-            </li>
-          </ul>
-        </div>
+                {category.name}
+                <svg
+                  className="h-4 w-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </button>
+              <div className="pl-4">
+                {category.subcategories.map((subcategory) => (
+                  <Link
+                    key={subcategory}
+                    to={`/${category.name.toLowerCase()}/${subcategory.toLowerCase().replace(" ", "-")}`}
+                    className="block py-2 text-sm text-gray-600 hover:text-pink-600 hover:bg-pink-50 transition-colors duration-200"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {subcategory}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          ))}
+        </motion.div>
       )}
-    </Fragment>
+    </motion.nav>
   );
-}
+};
+
 export default Navbar;
